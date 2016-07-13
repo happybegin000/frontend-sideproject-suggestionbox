@@ -1,9 +1,14 @@
 app.controller('HomeController', [
 	'$scope', 
 	'suggestions',
-	function($scope, suggestions) {
+	'orderByFilter',
+	function($scope, suggestions, orderBy) {
 
 		$scope.helloWorld = "Hello, AngularJS!";
+		//$scope.posts = suggestions.posts;
+		//$scope.posts = orderBy($scope.posts, 'upvotes', true);
+
+		suggestions.posts = orderBy(suggestions.posts, 'upvotes', true);
 		$scope.posts = suggestions.posts;
 
 		$scope.addSuggestion = function(){
@@ -14,7 +19,8 @@ app.controller('HomeController', [
 
 			$scope.posts.push({
 				title: $scope.title,
-				upvotes: 0
+				upvotes: 0,
+				comments: []
 			});
 
 			$scope.title = "";
@@ -23,6 +29,7 @@ app.controller('HomeController', [
 
 		$scope.upVote = function(post){
 			post.upvotes += 1;
+			suggestions.posts = orderBy(suggestions.posts, 'upvotes', true);
 		};
 
 }]);

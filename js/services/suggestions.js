@@ -1,25 +1,59 @@
-app.factory('suggestions', ['$http', function($http) {
+app.factory('suggestions', ['$http', 'orderByFilter', function($http, orderBy) {
 	var demoSuggestions = {
 		posts: [
 			{
 				title: 'Free Pizza at club meetings',
 				upvotes: 5,
-				comments: []
+				comments: [
+					{
+						body: 'i cant wait',
+						upvotes: 1
+					},
+					{
+						body: 'i can eat two',
+						upvotes: 3					
+					}
+				]
 			},
 			{
 				title: 'Nirvana the rock band',
-				upvotes: 500,
-				comments: []
+				upvotes: 10,
+				comments: [					
+					{
+						body: 'nirvana the best',
+						upvotes: 3
+					},
+					{
+						body: 'kurt, chris, david',
+						upvotes: 2					
+					}
+				]
 			},			{
 				title: 'Coporate rock sucks',
 				upvotes: 1,
-				comments: []
-			},
+				comments: [					
+					{
+						body: 'money is everything',
+						upvotes: 3
+					},
+					{
+						body: 'not money isn\'t everything',
+						upvotes: 2					
+					}
+				]			},
 			{
 				title: 'I have 12 consoles',
-				upvotes: 25,
-				comments: []
-			}		
+				upvotes: 9,
+				comments: [					
+					{
+						body: 'snes',
+						upvotes: 3
+					},
+					{
+						body: 'sega',
+						upvotes: 2					
+					}
+				]			}		
 		]
 	};
 

@@ -6,6 +6,10 @@ app.config(function ($routeProvider) {
 	      controller: 'HomeController', 
 	      templateUrl: 'views/home.html' 
 	    })
+	    .when('/comment/:id', { 
+	      controller: 'commentController', 
+	      templateUrl: 'views/comment.html' 
+	    })
 	    .otherwise({ 
 	      redirectTo: '/suggestion' 
 	    }); 
