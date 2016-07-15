@@ -1,4 +1,4 @@
-app.factory('suggestions', ['$http', 'orderByFilter', function($http, orderBy) {
+app.factory('suggestions', ['$http', function($http) {
 	var demoSuggestions = {
 		posts: [
 			{
@@ -28,7 +28,8 @@ app.factory('suggestions', ['$http', 'orderByFilter', function($http, orderBy) {
 						upvotes: 2					
 					}
 				]
-			},			{
+			},			
+			{
 				title: 'Coporate rock sucks',
 				upvotes: 1,
 				comments: [					
@@ -40,7 +41,8 @@ app.factory('suggestions', ['$http', 'orderByFilter', function($http, orderBy) {
 						body: 'not money isn\'t everything',
 						upvotes: 2					
 					}
-				]			},
+				]			
+			},
 			{
 				title: 'I have 12 consoles',
 				upvotes: 9,
@@ -53,7 +55,8 @@ app.factory('suggestions', ['$http', 'orderByFilter', function($http, orderBy) {
 						body: 'sega',
 						upvotes: 2					
 					}
-				]			}		
+				]			
+			}		
 		]
 	};
 

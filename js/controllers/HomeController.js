@@ -8,7 +8,7 @@ app.controller('HomeController', [
 		//$scope.posts = suggestions.posts;
 		//$scope.posts = orderBy($scope.posts, 'upvotes', true);
 
-		suggestions.posts = orderBy(suggestions.posts, 'upvotes', true);
+		suggestions.posts = orderBy(suggestions.posts, '-upvotes');
 		$scope.posts = suggestions.posts;
 
 		$scope.addSuggestion = function(){
@@ -29,7 +29,7 @@ app.controller('HomeController', [
 
 		$scope.upVote = function(post){
 			post.upvotes += 1;
-			suggestions.posts = orderBy(suggestions.posts, 'upvotes', true);
+			suggestions.posts = orderBy(suggestions.posts, '-upvotes');
 		};
 
 }]);
