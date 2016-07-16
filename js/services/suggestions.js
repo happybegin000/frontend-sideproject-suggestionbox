@@ -4,6 +4,7 @@ app.factory('suggestions', ['$http', function($http) {
 			{
 				title: 'Free Pizza at club meetings',
 				upvotes: 5,
+				time: 0,
 				comments: [
 					{
 						body: 'i cant wait',
@@ -18,6 +19,7 @@ app.factory('suggestions', ['$http', function($http) {
 			{
 				title: 'Nirvana the rock band',
 				upvotes: 10,
+				time: 0,
 				comments: [					
 					{
 						body: 'nirvana the best',
@@ -32,6 +34,7 @@ app.factory('suggestions', ['$http', function($http) {
 			{
 				title: 'Coporate rock sucks',
 				upvotes: 1,
+				time: 0,
 				comments: [					
 					{
 						body: 'money is everything',
@@ -46,6 +49,7 @@ app.factory('suggestions', ['$http', function($http) {
 			{
 				title: 'I have 12 consoles',
 				upvotes: 9,
+				time: 0,
 				comments: [					
 					{
 						body: 'snes',
