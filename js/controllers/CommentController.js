@@ -1,13 +1,28 @@
-app.controller('commentController', [
+app.controller('CommentController', [
 	'$scope', 
 	'suggestions',
+	'suggestionsFB',
+	'commentsFB',
 	'$routeParams',
-	function($scope, suggestions, $routeParams) {
+	function($scope, suggestions, suggestionsFB, commentsFB, $routeParams) {
 
-		$scope.post = suggestions.posts[$routeParams.id];
+		var comments = commentsFB;
+		comments.setCommentID($routeParams.id);
+		$scope.comments = comments.callFB();
+		$scope.suggestion = comments.getSuggestion();
+
+		$scope.suggestion.$watch(function(){
+				$scope.title = $scope.suggestion[1].$value;
+			});
 
 		$scope.upVote = function(comment){
 			comment.upvotes += 1;
+			$scope.comments.$save(comment).then(function(){
+				console.log("saved!");
+			})
+
+			$scope.suggestion = $scope.title[1].$value;
+			//console.log($scope.title[1].$value);
 		};
 
 		$scope.addComment = function(){
@@ -16,9 +31,10 @@ app.controller('commentController', [
 				return;
 			}
 
-			$scope.post.comments.push({
+			$scope.comments.$add({
 				body: $scope.comment,
-				upvotes: 0
+				upvotes: 0,
+      			timestamp: firebase.database.ServerValue.TIMESTAMP
 			});
 
 			$scope.comment = "";
