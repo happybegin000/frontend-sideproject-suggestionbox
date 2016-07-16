@@ -7,13 +7,13 @@
 </form>
 
 <ul class="list-unstyled well">
-	<li class="" ng-repeat="post in posts | orderBy:'-upvotes' ">
+	<li class="" ng-repeat="post in postsFB | orderBy:'-upvotes' ">
 		<div class="panel panel-info">
 		  <div class="panel-heading">
 		    <h3 class="panel-title">{{post.title}}</h3>
 			</div>
 		  <div class="panel-body">
-			<p><button type="button" class="btn btn-primary" ng-click="upVote(post)"><span class="glyphicon glyphicon-thumbs-up"></span> Votes: {{post.upvotes}}</button> <a href="#/comment/{{$index}}" class="btn btn-primary"><span class="glyphicon glyphicon-comment"></span></a></p>
+			<p><button type="button" class="btn btn-primary" ng-click="upVote(post)"><span class="glyphicon glyphicon-thumbs-up"></span> Votes: {{post.upvotes}}</button> <a href="#/comment/{{post.$id}}" class="btn btn-primary"><span class="glyphicon glyphicon-comment"></span></a></p>
 			</div>
 		</div>
 	</li>

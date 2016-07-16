@@ -19,17 +19,7 @@ app.controller('HomeController', [
 			if(!$scope.title || $scope.title === ""){
 				return;
 			}
-/*
-			$scope.posts.push({
-				title: $scope.title,
-				upvotes: 0,
-				comments: []
-			});
 
-			$scope.title = "";
-
-		};
-*/
 			$scope.postsFB.$add({
 				title: $scope.title,
 				upvotes: 0,
@@ -40,9 +30,13 @@ app.controller('HomeController', [
 			$scope.title = "";
 
 		};
+
 		$scope.upVote = function(post){
 			post.upvotes += 1;
-			suggestions.posts = orderBy(suggestions.posts, '-upvotes');
+			$scope.postsFB.$save(post).then(function(){
+				console.log("upvoted");
+			});
+			//suggestions.posts = orderBy(suggestions.posts, '-upvotes');
 		};
 
 }]);
