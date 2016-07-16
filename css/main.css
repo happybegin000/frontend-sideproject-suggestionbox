@@ -1,3 +1,13 @@
 .panel-title {
 	display: inline;
 }
+
+@media only screen and (max-width: 414px) {
+	.panel .home {
+		height: 60px;
+	}
+
+	.panel .panel-body p a {
+		float: right!important;
+	}
+}
