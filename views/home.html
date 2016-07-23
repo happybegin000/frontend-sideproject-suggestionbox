@@ -4,19 +4,39 @@
 <input type="text" class="form-control" placeholder="Great ideas here" ng-model="title"></input>
 </div>
 <button type="submit" class="btn btn-primary">Suggest</button>
+<button class="btn btn-primary" ng-click="signIn()">Sign In Anonymously</button>{{firebaseUser.uid}}
+
 </form>
 
 <ul class="list-unstyled well">
 	<li class="" ng-repeat="post in postsFB | orderBy:'-upvotes' ">
 		<div class="panel panel-info">
 		  <div class="panel-heading home">
-		    <h3 class="panel-title">{{post.title}}</h3>
+		    <h3 class="panel-title">{{ post.title }}</h3>
 		    <p class="pull-right">{{post.timestamp | date: 'EEEE, MMM d, y hh:mm a' }}</p>
 			</div>
 		  <div class="panel-body">
-			<p><button type="button" class="btn btn-primary" ng-click="upVote(post)"><span class="glyphicon glyphicon-thumbs-up"></span> Votes: {{post.upvotes}}</button> <a href="#/comment/{{post.$id}}" class="btn btn-primary"><span class="glyphicon glyphicon-comment"></span></a></p>
+			<p><button type="button" class="btn btn-primary" ng-click="upVote(post)"><span class="glyphicon glyphicon-thumbs-up"></span> Votes: {{post.upvotes}}</button> <a href="#/comment/{{post.$id}}" class="btn btn-primary"><span class="glyphicon glyphicon-comment"></span> {{ commentsFB.getLengthOfComment(post.$id) }}</a></p>
 			</div>
 		</div>
 	</li>
 </ul>
-<p>{{ title }}</p>
+<nav>
+  <ul class="pagination">
+    <li>
+      <a href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li class="active"><a href="#">1</a></li>
+    <li><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">4</a></li>
+    <li><a href="#">5</a></li>
+    <li>
+      <a href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>

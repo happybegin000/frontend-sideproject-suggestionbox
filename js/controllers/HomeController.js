@@ -1,18 +1,29 @@
 app.controller('HomeController', [
 	'$scope', 
-	'suggestions',
 	'suggestionsFB',
 	'orderByFilter',
-	function($scope, suggestions, suggestionsFB, orderBy) {
+	'$firebaseAuth',
+	'commentsFB',
+	'$firebaseArray',
+	function($scope, suggestionsFB, orderBy, $firebaseAuth, commentsFB, $firebaseArray) {
 
-		$scope.helloWorld = "Hello, AngularJS!";
-		//$scope.posts = suggestions.posts;
-		//$scope.posts = orderBy($scope.posts, 'upvotes', true);
+		var auth = $firebaseAuth();
 
-		suggestions.posts = orderBy(suggestions.posts, '-upvotes');
-		$scope.posts = suggestions.posts;
+	    $scope.signIn = function() {
+	      $scope.firebaseUser = null;
+	      $scope.error = null;
+
+	      auth.$signInAnonymously().then(function(firebaseUser) {
+	        $scope.firebaseUser = firebaseUser;
+	      }).catch(function(error) {
+	        $scope.error = error;
+	      });
+	    };
 
 		$scope.postsFB =  suggestionsFB;
+  		$scope.comments = {};
+  		$scope.commentsFB = commentsFB;
+		$scope.commentsFB.getAllComments();
 
 		$scope.addSuggestion = function(){
 
@@ -21,6 +32,7 @@ app.controller('HomeController', [
 			}
 
 			$scope.postsFB.$add({
+				uid: firebaseUser.uid,
 				title: $scope.title,
 				upvotes: 0,
       			timestamp: firebase.database.ServerValue.TIMESTAMP,
@@ -36,7 +48,7 @@ app.controller('HomeController', [
 			$scope.postsFB.$save(post).then(function(){
 				console.log("upvoted");
 			});
-			//suggestions.posts = orderBy(suggestions.posts, '-upvotes');
+
 		};
 
 }]);
